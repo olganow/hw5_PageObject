@@ -9,6 +9,7 @@ import static pages.Constant.AUTOMATION_PRACTICE_FORM_URL;
 
 public class RegistrationPage {
     private SelenideElement
+            header = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
@@ -21,16 +22,17 @@ public class RegistrationPage {
             addressInput = $("#currentAddress"),
             stateInput = $("#react-select-3-input"),
             cityInput = $("#react-select-4-input"),
-            submitInput = $("#submit");
+            submitButton = $("#submit");
 
-    public final static String REGISTRATION_FORM = "Student Registration Form";
+    private final static String REGISTRATION_FORM = "Student Registration Form";
+
     CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
         open(AUTOMATION_PRACTICE_FORM_URL);
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-        $(".practice-form-wrapper").shouldHave(text(REGISTRATION_FORM));
+        header.shouldHave(text(REGISTRATION_FORM));
         return this;
     }
 
@@ -107,7 +109,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage submitForm() {
-        submitInput.scrollIntoView(true).click();
+        submitButton.scrollIntoView(true).click();
         return this;
     }
 

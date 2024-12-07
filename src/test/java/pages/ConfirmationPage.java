@@ -7,13 +7,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class ConfirmationPage {
 
-    public final static String THANKS_SUBMITTING_FORM = "Thanks for submitting the form";
+    private final static String THANKS_SUBMITTING_FORM = "Thanks for submitting the form";
 
     private SelenideElement
             titleInput = $("#example-modal-sizes-title-lg"),
             nameInput = $x("//td[text()='Student Name']"),
-
-    emailInput = $x("//td[text()='Student Email']"),
+            emailInput = $x("//td[text()='Student Email']"),
             genderInput = $x("//td[text()='Gender']"),
             mobileInput = $x("//td[text()='Mobile']"),
             birthdayInput = $x("//td[text()='Date of Birth']"),
