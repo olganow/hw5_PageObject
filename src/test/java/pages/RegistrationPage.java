@@ -30,9 +30,13 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open(AUTOMATION_PRACTICE_FORM_URL);
+        header.shouldHave(text(REGISTRATION_FORM));
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-        header.shouldHave(text(REGISTRATION_FORM));
         return this;
     }
 
@@ -117,6 +121,5 @@ public class RegistrationPage {
         lastNameInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)")); // Проверка на hex #dc3545 в формате rgb
         return this;
     }
-
 
 }

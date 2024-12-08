@@ -19,12 +19,26 @@ public class RegistrationTest extends TestBase {
             state = "Uttar Pradesh",
             city = "Lucknow";
 
+    private String
+            fullNameCellName = "Student Name",
+            emailCellName = "Student Email",
+            genderCellName = "Gender",
+            phoneCellName = "Mobile",
+            birthdayCellName = "Date of Birth",
+            subjectCellName = "Subjects",
+            hobbyCellName = "Hobbies",
+            pictureCellName = "Picture",
+            addressCellName = "Address",
+            stateAndCityCellName = "State and City";
+
     RegistrationPage registrationPage = new RegistrationPage();
     ConfirmationPage confirmationPage = new ConfirmationPage();
 
     @Test
     void successfulFillInAndSubmitFullFormTest() {
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
+                .removeBanner()
                 .setFirstName(firstNameUser)
                 .setLastName(lastNameUser)
                 .setEmail(email)
@@ -39,22 +53,23 @@ public class RegistrationTest extends TestBase {
 
         confirmationPage
                 .confirmPage()
-                .confirmName(firstNameUser, lastNameUser)
-                .confirmEmail(email)
-                .confirmGender(gender)
-                .confirmPhone(phone)
-                .confirmBirthday(dayOfbirth, monthOfbirth, yearOfBirth)
-                .confirmSubjects(subjectOne, subjectSecond)
-                .confirmHobby(hobby)
-                .confirmAvatar(picture)
-                .confirmStreet(street)
-                .confirmStateAndSity(state, city);
+                .confirmResult(fullNameCellName, firstNameUser + " " + lastNameUser)
+                .confirmResult(emailCellName, email)
+                .confirmResult(genderCellName, gender)
+                .confirmResult(phoneCellName, phone)
+                .confirmResult(birthdayCellName, dayOfbirth + " " + monthOfbirth + "," + yearOfBirth)
+                .confirmResult(subjectCellName, subjectOne + ", " + subjectSecond)
+                .confirmResult(hobbyCellName, hobby)
+                .confirmResult(pictureCellName, picture)
+                .confirmResult(addressCellName, street)
+                .confirmResult(stateAndCityCellName, state + " " + city);
     }
-
 
     @Test
     void successfulFillInAndSubmitShortFormTest() {
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
+                .removeBanner()
                 .setFirstName(firstNameUser)
                 .setLastName(lastNameUser)
                 .setGender(gender)
@@ -63,15 +78,17 @@ public class RegistrationTest extends TestBase {
 
         confirmationPage
                 .confirmPage()
-                .confirmName(firstNameUser, lastNameUser)
-                .confirmGender(gender)
-                .confirmPhone(phone);
+                .confirmResult(fullNameCellName, firstNameUser + " " + lastNameUser)
+                .confirmResult(genderCellName, gender)
+                .confirmResult(phoneCellName, phone);
     }
 
 
     @Test
     void unsuccessfulFillInAndSubmitShortFormTestWithEmptySecondNameFieldNegative() {
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
+                .removeBanner()
                 .setFirstName(firstNameUser)
                 .setGender(gender)
                 .setUserNumber(phone)
